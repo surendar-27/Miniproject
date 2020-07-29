@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <input id="in" type="text" placeholder="Enter your to do list item" onkeypress="Input(event)">
+    <button id='btn' onclick="getInput()" >Enter</button>
+    <div id="display">
+    </div>
+    <script>
+        function getInput() {
+            let inputval = document.getElementById("in");
+            let list= document.getElementById("display");
+            let delbtn =document.createElement("button");
+            delbtn.id =(inputval.value + "btn");
+            let text = document.createTextNode(inputval.value);
+            delbtn.setAttribute("onclick","dele("+inputval.value+")");
+            let btntext = document.createTextNode("Delete");
+            let listitem = document.createElement("li");
+            let bre = document.createElement("span");
+            listitem.appendChild(text);
+            listitem.appendChild(bre);
+            delbtn.appendChild(btntext);
+            listitem.appendChild(delbtn);
+            listitem.id=inputval.value;
+            list.appendChild(listitem);
+            if (inputval){
+                inputval.value="";
+            }
+        }
+        function Input(e){
+            if (e.keyCode==13){
+                getInput();
+            }
+         }
+        function dele(ele){
+            ele.parentNode.removeChild(ele);
+        }
+    </script>
+</body>
+</html>
